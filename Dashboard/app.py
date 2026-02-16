@@ -3,15 +3,17 @@ import pandas as pd
 from pyathena import connect
 from datetime import datetime
 
-st.set_page_config(page_title="Video Game Data Lakehouse", layout="wide")
+st.set_page_config(page_title="Video Game Data Lakehouse", layout="wide", page_icon="🕹️")
 
-st.markdown("""
+st.markdown(
+    """
     <style>
     .main { background-color: #0e1117; }
     .stMetric { background-color: #1f2937; padding: 15px; border-radius: 10px; border: 1px solid #374151; }
     </style>
-    """, unsafe_allow_name=True)
-
+    """,
+    unsafe_allow_html=True
+)
 @st.cache_resource
 def get_conn():
     return connect(
@@ -94,3 +96,4 @@ try:
 except Exception as e:
     st.error(f"Error conectando con el Data Lake: {e}")
     st.info("Asegúrate de que los Secrets de AWS y el bucket de resultados de Athena estén configurados.")
+
